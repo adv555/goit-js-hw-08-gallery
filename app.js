@@ -80,7 +80,9 @@ function onOpenModal(evt) {
   refs.modalImage.src = evt.target.dataset.source;
   refs.modalImage.alt = evt.target.alt;
 
-  window.addEventListener('keydown', onLeftRightArrow);
+  window.addEventListener('keydown', onScrollLeft);
+  window.addEventListener('keydown', onScrolRight);
+  // window.addEventListener('keydown', onLeftRightArrow);
   window.addEventListener('keydown', onEscBtnCloseModal);
 }
 
@@ -93,7 +95,9 @@ function onCloseModal() {
   refs.modalImage.src = '';
   refs.modalImage.alt = '';
 
-  window.removeEventListener('keydown', onLeftRightArrow);
+  window.removeEventListener('keydown', onScrollLeft);
+  window.removeEventListener('keydown', onScrolRight);
+  // window.removeEventListener('keydown', onLeftRightArrow);
   window.removeEventListener('keydown', onEscBtnCloseModal);
 }
 
@@ -116,25 +120,25 @@ function onEscBtnCloseModal(evt) {
 
 // window.addEventListener('keydown', onLeftRightArrow);
 
-function onLeftRightArrow(evt) {
-  if (evt.code !== 'ArrowRight' || evt.code !== 'ArrowLeft') {
-    return;
-  }
+// function onLeftRightArrow(evt) {
+//   if (evt.code !== 'ArrowRight' || evt.code !== 'ArrowLeft') {
+//     return;
+//   }
 
-  const images = galleryItems.map(({ original }) => original);
+//   const images = galleryItems.map(({ original }) => original);
 
-  let currentImageIdx = images.indexOf(refs.modalImage.src);
+//   let currentImageIdx = images.indexOf(refs.modalImage.src);
 
-  if (currentImageIdx === images.length - 1) {
-    currentImageIdx = 0;
-    return (refs.modalImage.src = images[currentImageIdx + 1]);
-  }
+//   if (currentImageIdx === images.length - 1) {
+//     currentImageIdx = 0;
+//     return (refs.modalImage.src = images[currentImageIdx + 1]);
+//   }
 
-  if (currentImageIdx === 0) {
-    currentImageIdx = images.length - 1;
-    return (refs.modalImage.src = images[currentImageIdx - 1]);
-  }
-}
+//   if (currentImageIdx === 0) {
+//     currentImageIdx = images.length - 1;
+//     return (refs.modalImage.src = images[currentImageIdx - 1]);
+//   }
+// }
 
 // ====================  Вариант 2 ==================== //
 
@@ -142,36 +146,36 @@ function onLeftRightArrow(evt) {
 
 // window.addEventListener('keydown', onScrollLeft);
 
-// function onScrollLeft(evt) {
-//   if (evt.code !== 'ArrowLeft') {
-//     return;
-//   }
+function onScrollLeft(evt) {
+  if (evt.code !== 'ArrowLeft') {
+    return;
+  }
 
-//   const images = galleryItems.map(({ original }) => original);
-//   let currentImageIdx = images.indexOf(refs.modalImage.src);
+  const images = galleryItems.map(({ original }) => original);
+  let currentImageIdx = images.indexOf(refs.modalImage.src);
 
-//   if (currentImageIdx === 0) {
-//     currentImageIdx = images.length - 1;
-//   }
+  if (currentImageIdx === 0) {
+    currentImageIdx = images.length - 1;
+  }
 
-//   refs.modalImage.src = images[currentImageIdx - 1];
-// }
+  refs.modalImage.src = images[currentImageIdx - 1];
+}
 
-// // ================  Scroll Right ================ //
+// ================  Scroll Right ================ //
 
 // window.addEventListener('keydown', onScrolRight);
 
-// function onScrolRight(evt) {
-//   if (evt.code !== 'ArrowRight') {
-//     return;
-//   }
+function onScrolRight(evt) {
+  if (evt.code !== 'ArrowRight') {
+    return;
+  }
 
-//   const images = galleryItems.map(({ original }) => original);
-//   let currentImageIdx = images.indexOf(refs.modalImage.src);
+  const images = galleryItems.map(({ original }) => original);
+  let currentImageIdx = images.indexOf(refs.modalImage.src);
 
-//   if (currentImageIdx === images.length - 1) {
-//     currentImageIdx = 0;
-//   }
+  if (currentImageIdx === images.length - 1) {
+    currentImageIdx = 0;
+  }
 
-//   refs.modalImage.src = images[currentImageIdx + 1];
-// }
+  refs.modalImage.src = images[currentImageIdx + 1];
+}
