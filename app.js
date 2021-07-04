@@ -80,9 +80,8 @@ function onOpenModal(evt) {
   refs.modalImage.src = evt.target.dataset.source;
   refs.modalImage.alt = evt.target.alt;
 
-  window.addEventListener('keydown', onScrollLeft);
-  window.addEventListener('keydown', onScrolRight);
-  // window.addEventListener('keydown', onLeftRightArrow);
+  window.addEventListener('keydown', onLeftArrKey);
+  window.addEventListener('keydown', onRightArrKey);
   window.addEventListener('keydown', onEscBtnCloseModal);
 }
 
@@ -95,9 +94,8 @@ function onCloseModal() {
   refs.modalImage.src = '';
   refs.modalImage.alt = '';
 
-  window.removeEventListener('keydown', onScrollLeft);
-  window.removeEventListener('keydown', onScrolRight);
-  // window.removeEventListener('keydown', onLeftRightArrow);
+  window.removeEventListener('keydown', onLeftArrKey);
+  window.removeEventListener('keydown', onRightArrKey);
   window.removeEventListener('keydown', onEscBtnCloseModal);
 }
 
@@ -107,8 +105,6 @@ refs.modalOverlay.addEventListener('click', onCloseModal);
 
 // ================  Close Modal ESC ================ //
 
-// window.addEventListener('keydown', onEscBtnCloseModal);
-
 function onEscBtnCloseModal(evt) {
   if (evt.code !== 'Escape') {
     return;
@@ -116,37 +112,9 @@ function onEscBtnCloseModal(evt) {
   onCloseModal();
 }
 
-// ================  Scroll Left/Right btn ================ //
-
-// window.addEventListener('keydown', onLeftRightArrow);
-
-// function onLeftRightArrow(evt) {
-//   if (evt.code !== 'ArrowRight' || evt.code !== 'ArrowLeft') {
-//     return;
-//   }
-
-//   const images = galleryItems.map(({ original }) => original);
-
-//   let currentImageIdx = images.indexOf(refs.modalImage.src);
-
-//   if (currentImageIdx === images.length - 1) {
-//     currentImageIdx = 0;
-//     return (refs.modalImage.src = images[currentImageIdx + 1]);
-//   }
-
-//   if (currentImageIdx === 0) {
-//     currentImageIdx = images.length - 1;
-//     return (refs.modalImage.src = images[currentImageIdx - 1]);
-//   }
-// }
-
-// ====================  Вариант 2 ==================== //
-
 // // ================  Scroll Left ================ //
 
-// window.addEventListener('keydown', onScrollLeft);
-
-function onScrollLeft(evt) {
+function onLeftArrKey(evt) {
   if (evt.code !== 'ArrowLeft') {
     return;
   }
@@ -163,9 +131,7 @@ function onScrollLeft(evt) {
 
 // ================  Scroll Right ================ //
 
-// window.addEventListener('keydown', onScrolRight);
-
-function onScrolRight(evt) {
+function onRightArrKey(evt) {
   if (evt.code !== 'ArrowRight') {
     return;
   }
